@@ -1,2 +1,5 @@
 mountpoints:
-  /: https://drive.google.com/drive/u/0/folders/1igTx_BHPVDujZW751PK5alH46_a9TCT4
+  /:
+    url: https://author-p13754-e1241760.adobeaemcloud.com/content/lovesac
+    type: markup
+    suffix: ".franklin.html?wcmmode=disabled"
