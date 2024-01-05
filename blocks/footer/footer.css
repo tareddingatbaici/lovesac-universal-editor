@@ -1,0 +1,29 @@
+footer {
+  padding: 2rem;
+  background-color: var(--overlay-background-color);
+  font-size: var(--body-font-size-s);
+}
+
+footer .footer {
+  max-width: 1200px;
+  margin: auto;
+}
+
+footer .footer p {
+  margin: 0;
+}
+
+footer .footer .icon-logo svg {
+  width: 300px;
+}
+
+footer .footer .icon {
+  width: auto;
+  height: auto;
+}
+
+ul {
+  display: flex;
+  gap: 2em;
+  list-style-type: none;
+}
