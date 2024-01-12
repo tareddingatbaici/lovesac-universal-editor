@@ -1,2 +1,5 @@
 mappings:
-  - /:/
+ - /content/lovesac/:/
+
+includes:
+ - /content/lovesac/
