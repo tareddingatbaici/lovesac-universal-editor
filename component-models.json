@@ -185,5 +185,18 @@
         "valueType": "string"
       }
     ]
+  },
+  {
+    "id": "video-embed",
+    "fields": [
+      {
+        "component": "text-input",
+        "valueType": "string",
+        "name": "videoUrl",
+        "value": "",
+        "label": "MPC Video URL",
+        "description": "Please provide a URL to an MPC video."
+      }
+    ]
   }
 ]
