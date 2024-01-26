@@ -77,10 +77,12 @@ function decorateTeaser(video, teaserPicture, target) {
 }
 
 function decorateOverlayButton(fullScreenVideoLink, block, overlay) {
+  const buttonText = overlay.innerText.trim();
   const button = document.createElement('a');
   button.classList.add('video-banner-btn');
 
   button.href = fullScreenVideoLink;
+  button.innerText = buttonText;
 
   /*button.addEventListener('click', () => {
     const fullVideoContainer = block.querySelector('.full-video-container');
@@ -93,6 +95,7 @@ function decorateOverlayButton(fullScreenVideoLink, block, overlay) {
     });
   });*/
 
+  overlay.innerText = '';
   overlay.appendChild(button);
   fullScreenVideoLink.remove();
 }
