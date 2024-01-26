@@ -185,5 +185,47 @@
         "valueType": "string"
       }
     ]
+  },
+  {
+    "id": "hero-video",
+    "fields": [
+      {
+        "component": "text-input",
+        "valueType": "string",
+        "name": "videoUrl",
+        "value": "",
+        "label": "Video URL",
+        "description": "Please provide a URL to an MPC video."
+      },
+      {
+        "component": "text-input",
+        "valueType": "string",
+        "name": "buttonText",
+        "value": "",
+        "label": "Button",
+        "description": "Please provide button title."
+      },
+      {
+        "component": "text-input",
+        "valueType": "string",
+        "name": "buttonUrl",
+        "value": "",
+        "label": "Button URL",
+        "description": "Please provide URL for button."
+      }
+    ]
+  },
+  {
+    "id": "embed",
+    "fields": [
+      {
+        "component": "text-input",
+        "valueType": "string",
+        "name": "videoUrl",
+        "value": "",
+        "label": "Video URL",
+        "description": "Please provide a URL to an MPC video."
+      }
+    ]
   }
 ]
