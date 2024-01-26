@@ -77,12 +77,12 @@ function decorateTeaser(video, teaserPicture, target) {
 }
 
 function decorateOverlayButton(fullScreenVideoLink, block, overlay) {
-  const button = document.createElement('button');
+  const button = document.createElement('a');
   button.classList.add('video-banner-btn');
 
-  button.innerHTML = fullScreenVideoLink.innerHTML;
+  button.href = fullScreenVideoLink;
 
-  button.addEventListener('click', () => {
+  /*button.addEventListener('click', () => {
     const fullVideoContainer = block.querySelector('.full-video-container');
     fullVideoContainer.style.display = 'block';
     const video = fullVideoContainer.querySelector('video');
@@ -91,7 +91,7 @@ function decorateOverlayButton(fullScreenVideoLink, block, overlay) {
       video.addEventListener('play', playVideoAnimation);
       video.addEventListener('pause', pauseVideoAnimation);
     });
-  });
+  });*/
 
   overlay.appendChild(button);
   fullScreenVideoLink.remove();
@@ -175,7 +175,7 @@ export default function decorate(block) {
   if (!fullScreenVideoLink) {
     return;
   }
-  const fullScreenVideoLinkHref = fullScreenVideoLink.href;
+  //const fullScreenVideoLinkHref = fullScreenVideoLink.href;
   decorateOverlayButton(fullScreenVideoLink, block, overlay);
-  decorateFullScreenVideo(fullScreenVideoLinkHref, teaserPicture, videoBanner);
+  //decorateFullScreenVideo(fullScreenVideoLinkHref, teaserPicture, videoBanner);
 }
