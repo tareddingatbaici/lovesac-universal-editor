@@ -155,12 +155,12 @@ async function decorateFullScreenVideo(fullScreenVideoLink, teaserPicture, targe
 export default function decorate(block) {
 
   // get the first and only cell from each row
-  const props = [...block.children].map((row) => console.log(row.firstElementChild));
+  const props = [...block.children].map((row) => row.firstElementChild);
 
   const videoBanner = block.children[0];
   videoBanner.classList.add('hero-video-banner');
 
-  const heroContent = videoBanner.children[0];
+  const heroContent = props[0];
   heroContent.classList.add('teaser-video-container');
 
   const teaserVideoLink = heroContent.querySelector('a');
@@ -168,10 +168,10 @@ export default function decorate(block) {
 
   decorateTeaser(teaserVideoLink, teaserPicture, heroContent);
 
-  const overlay = videoBanner.children[1];
+  const overlay = props[1];
   overlay.classList = 'overlay';
 
-  const fullScreenVideoLink = overlay.querySelector('a:last-of-type');
+  const fullScreenVideoLink = props[2].querySelector('a:last-of-type');
   if (!fullScreenVideoLink) {
     return;
   }
