@@ -1,35 +1,29 @@
 import {
-  buildBlock,
-  decorateBlocks,
+  sampleRUM,
+  loadHeader,
+  loadFooter,
   decorateButtons,
   decorateIcons,
   decorateSections,
+  decorateBlocks,
   decorateTemplateAndTheme,
+  waitForLCP,
   loadBlocks,
   loadCSS,
-  loadFooter,
-  loadHeader,
-  sampleRUM,
-  waitForLCP,
 } from './lib-franklin.js';
-
-import {getModal} from '../blocks/modal/modal.js';
 
 const LCP_BLOCKS = []; // add your LCP blocks to the list
 
 /**
- * Builds hero block and prepends to main in a new section.
- * @param {Element} main The container element
+ * @returns the site root when served from AEM
  */
-function buildHeroBlock(main) {
-  const h1 = main.querySelector('h1');
-  const picture = main.querySelector('picture');
-  // eslint-disable-next-line no-bitwise
-  if (h1 && picture && (h1.compareDocumentPosition(picture) & Node.DOCUMENT_POSITION_PRECEDING)) {
-    const section = document.createElement('div');
-    section.append(buildBlock('hero', { elems: [picture, h1] }));
-    main.prepend(section);
-  }
+export function getSiteRoot() {
+  // This can be considered a workaround to load fragments without having a proper mapping in
+  // place. It is implemented for demo purposes in order to support creating multiple sites
+  // using this repository as a showcase, where the site root is unknown.
+  // Projects must sepcify the correct mappings in the paths.yaml.
+  const [siteRoot] = window.hlx.codeBasePath.split('.resource');
+  return siteRoot;
 }
 
 /**
@@ -48,13 +42,8 @@ async function loadFonts() {
  * Builds all synthetic blocks in a container element.
  * @param {Element} main The container element
  */
-function buildAutoBlocks(main) {
-  try {
-    buildHeroBlock(main);
-  } catch (error) {
-    // eslint-disable-next-line no-console
-    console.error('Auto Blocking failed', error);
-  }
+function buildAutoBlocks() {
+
 }
 
 /**
@@ -69,35 +58,8 @@ export function decorateMain(main) {
   buildAutoBlocks(main);
   decorateSections(main);
   decorateBlocks(main);
-  decorateExampleModals(main);
 }
-function decorateExampleModals(main) {
-  const simpleModalButton = main.querySelector('a[href="http://modal-demo.simple"]');
-  const customModalButton = main.querySelector('a[href="http://modal-demo.custom"]');
-  if(simpleModalButton) {
-      // Listens to the simple modal button
-      simpleModalButton.addEventListener('click', async (e) => {
-        e.preventDefault();
-        // Modals can be imported on-demand to prevent loading unnecessary code
-        const simpleModal = getModal('simple-modal', () => '<h2>Simple Modal Content</h2>');
-        simpleModal.showModal();
-      });
-  }
-  if(customModalButton) {
-      // Listens to the custom modal button
-      customModalButton.addEventListener('click', async (e) => {
-        e.preventDefault();
-        const customModal = getModal('custom-modal', () => `
-          <h2>Custom Modal</h2>
-          <p>This is some content in the custom modal.</p>
-          <button name="close-modal">Close Modal</button>
-        `, (modal) => {
-          modal.querySelector('button[name="close-modal"]').addEventListener('click', () => modal.close());
-        });
-        customModal.showModal();
-      });
-  }
-}
+
 /**
  * Loads everything needed to get to LCP.
  * @param {Element} doc The container element
@@ -143,25 +105,6 @@ async function loadLazy(doc) {
   sampleRUM('lazy');
   sampleRUM.observe(main.querySelectorAll('div[data-block-name]'));
   sampleRUM.observe(main.querySelectorAll('picture > img'));
-}
-
-export async function fetchGraphQL(query, variables) {
-  const headers = new Headers();
-  headers.append('Content-Type', 'application/json');
-  headers.append('Authorization', 'Bearer poyaszyjoe22jk90t7k0garp2up5bptu');
-  headers.append('Cookie', 'PHPSESSID=a67625593c63b052f061f57c0d3cef12; private_content_version=ed1affd6de96771b8ab015fea4ef3f03');
-
-  if (headers) {
-    return fetch('https://staging.lovesac.com/graphql', {
-      method: 'POST',
-      body: JSON.stringify({
-        variables,
-        query,
-      }),
-      headers,
-    });
-  }
-  throw new Error('fail');
 }
 
 /**
