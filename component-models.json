@@ -243,5 +243,34 @@
         "description": "Please provide a URL to an MPC video."
       }
     ]
+  },
+  {
+    "id": "text",
+    "fields": [
+      {
+        "component": "text-area",
+        "valueType": "string",
+        "name": "text",
+        "value": "",
+        "label": "Richtext"
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "display",
+        "label": "Display Text",
+        "value": "show",
+        "options": [
+          {
+            "name": "Show",
+            "value": "show"
+          },
+          {
+            "name": "Hide",
+            "value": "hide"
+          }
+        ]
+      }
+    ]
   }
 ]
