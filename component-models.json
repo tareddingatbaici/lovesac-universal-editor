@@ -248,6 +248,13 @@
     "id": "text",
     "fields": [
       {
+        "component": "text-area",
+        "valueType": "string",
+        "name": "text",
+        "value": "",
+        "label": "Richtext"
+      },
+      {
         "component": "select",
         "valueType": "string",
         "name": "display",
